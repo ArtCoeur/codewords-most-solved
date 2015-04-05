@@ -1,6 +1,9 @@
 var logger = require('./logger'),
     Store = require('./word_store'),
     request = require('request');
+/**
+ * should just route to 'controllers'
+ */
 
 /**
  * @param pub socket to write facts back to
@@ -40,17 +43,20 @@ function handleUpdatedCell(fact) {
     var pattern =  most_solved.asPattern();
     var length = most_solved.length();
 
+    logger.info("pattern = " + pattern);
+
     // use dictionary to find possible matches
     // GET http://dictionary/words?pattern=ptn&length=x
     var endpoint = 'http://dictionary/words?pattern=' + pattern + '&length=' + length;
+    logger.info("endpoint = " + endpoint);
 
     request(endpoint, function(err, response, response_body) {
         if (err) {
-            logger.error("most-solved: " + err);
+            logger.error("most-solved: error : " + err);
         } else {
             // deal with response, this will be a json array
             var matches = JSON.parse(response_body);
-            logger.info("most-solved: " + response_body);
+            logger.info("most-solved: success : " + response_body);
             // potentially update affected words & cells
             // publish new facts if cells have been updated
         }

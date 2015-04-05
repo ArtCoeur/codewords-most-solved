@@ -43,10 +43,10 @@ exports.mostSolved = function(board) {
     var number = -1;
     var most_solved = null;
 
-    _.each(words[board], function(element){
-        if (element.numberSolved() > number){
-            number = element.numberSolved();
-            most_solved = element;
+    _.each(words[board], function(word){
+        if (word.numberSolved() > number){
+            number = word.numberSolved();
+            most_solved = word;
         }
     });
 

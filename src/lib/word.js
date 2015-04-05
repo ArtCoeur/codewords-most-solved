@@ -3,7 +3,9 @@ var _ = require("underscore");
 /**
  */
 function Word(cells) {
-    this.cells = cells;
+    this.cells = _.map(cells, function(cell) {
+        return cell.toString().toLowerCase();
+    });
 }
 
 /**
@@ -13,7 +15,12 @@ function Word(cells) {
  * @returns {boolean}
  */
 Word.prototype.equals = function(word) {
-    return this.cells == word.cells;
+    _.each(this.cells, function(cell, index){
+        if (cell != word.cells[index]){
+            return false;
+        }
+    });
+    return true;
 };
 
 /**
@@ -23,7 +30,7 @@ Word.prototype.numberSolved = function() {
 
     var solved = 0;
     _.each(this.cells, function(element, index, list) {
-        if(!_.isNumber(element)) {
+        if(!_.isFinite(element)) {
             solved++;
         }
     });
@@ -38,7 +45,7 @@ Word.prototype.numberSolved = function() {
 Word.prototype.asPattern = function() {
     var pattern = '';
     _.each(this.cells, function(element, index, list) {
-        if(!_.isNumber(element)) {
+        if(!_.isFinite(element)) {
             pattern = pattern + element;
         } else {
             pattern = pattern + '.';
@@ -55,7 +62,7 @@ Word.prototype.asPattern = function() {
 Word.prototype.update = function(number, letter) {
     _.each(this.cells, function(element, index, list) {
         if(number == element) {
-            list[index] = letter;
+            list[index] = letter.toLowerCase();
         }
     });
 };
