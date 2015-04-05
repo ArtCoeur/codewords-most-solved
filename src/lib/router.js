@@ -8,7 +8,7 @@ var logger = require('./logger'),
  */
 exports.handleFact = function(pub, fact) {
 
-    logger.info("most-solved new fact: " + fact.name);
+    logger.info("most-solved new fact: name: " + fact.name + ' board: ' + fact.board);
 
     if (fact.name == 'word.new') {
         handleNewWord(fact);
@@ -22,16 +22,20 @@ exports.handleFact = function(pub, fact) {
  */
 function handleNewWord(fact) {
     // add word to the word store
-    Store.add(fact.data.body.cells);
+    Store.add(fact.board, fact.data.body.cells);
 }
 
 function handleUpdatedCell(fact) {
     // update all affected words
-    Store.update(fact.data.body.number, fact.data.body.letter);
+    Store.update(fact.board, fact.data.number, fact.data.letter);
 
     // get most solved
-    var most_solved = Store.mostSolved();
+    var most_solved = Store.mostSolved(fact.board);
 
+    if (!most_solved) {
+        logger.info("no most solved word : available words = " + Store.list(fact.board));
+        return;
+    }
     // need a pattern generator & a store of all solved letters, so we can rule out certain letters
     var pattern =  most_solved.asPattern();
     var length = most_solved.length();
