@@ -27,7 +27,7 @@ function handleNewWord(fact) {
 
 function handleUpdatedCell(fact) {
     // update all affected words
-    Store.update(fact.number, fact.letter);
+    Store.update(fact.data.body.number, fact.data.body.letter);
 
     // get most solved
     var most_solved = Store.mostSolved();
