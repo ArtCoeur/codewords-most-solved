@@ -1,0 +1,23 @@
+{
+  "name": "codewords-most-solved",
+  "version": "0.1.0",
+  "description": "Attempts to solve words with the most solved cells",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ArtCoeur/codewords-most-solved.git"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha ../test"
+  },
+  "author": "Tim Rodger tim.rodger@gmail.com",
+  "dependencies": {
+    "underscore": "~1.7.0",
+    "winston": "~0.8.3",
+    "rabbit.js": "~0.4.2"
+  },
+  "devDependencies": {
+    "should": "~4.3.0",
+    "mocha": "~2.0.1"
+  }
+}
