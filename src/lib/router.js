@@ -1,21 +1,26 @@
-var logger = require('./logger');
+var logger = require('./logger'),
+    Store = require('./word_store');
 
 /**
  * @param pub socket to write facts back to
- * @param fact fact object
+ * @param fact a fact object
  */
 exports.handleFact= function(pub, fact) {
-    if (fact.name == 'word.new'){
-        handleNewWord(pub, fact);
+    if (fact.name == 'word.new') {
+        handleNewWord(fact);
+    }  else if (fact.name == 'cell.updated') {
+
     }
 };
 
 /**
- * @param pub socket to write facts back to
  * @param fact fact object
  */
-function handleNewWord(pub, fact) {
-
-    var word = new BoardParser(fact.data.body.cells);
+function handleNewWord(fact) {
     // add word to the word store
+    Store.add(fact.data.body.cells);
+}
+
+function handleUpdatedCell(fact) {
+
 }
