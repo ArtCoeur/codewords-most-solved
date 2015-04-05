@@ -14,7 +14,8 @@
   "dependencies": {
     "underscore": "~1.7.0",
     "winston": "~0.8.3",
-    "rabbit.js": "~0.4.2"
+    "rabbit.js": "~0.4.2",
+    "request": "~2.55.0"
   },
   "devDependencies": {
     "should": "~4.3.0",

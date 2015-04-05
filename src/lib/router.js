@@ -1,11 +1,15 @@
 var logger = require('./logger'),
-    Store = require('./word_store');
+    Store = require('./word_store'),
+    request = require('request');
 
 /**
  * @param pub socket to write facts back to
  * @param fact a fact object
  */
-exports.handleFact= function(pub, fact) {
+exports.handleFact = function(pub, fact) {
+
+    logger.info("most-solved new fact: " + fact.name);
+
     if (fact.name == 'word.new') {
         handleNewWord(fact);
     }  else if (fact.name == 'cell.updated') {
@@ -23,8 +27,28 @@ function handleNewWord(fact) {
 
 function handleUpdatedCell(fact) {
     // update all affected words
+    Store.update(fact.number, fact.letter);
+
     // get most solved
+    var most_solved = Store.mostSolved();
+
+    // need a pattern generator & a store of all solved letters, so we can rule out certain letters
+    var pattern =  most_solved.asPattern();
+    var length = most_solved.length();
+
     // use dictionary to find possible matches
-    // potentially update affected words
-    // publish fact
+    // GET http://dictionary/words?pattern=ptn&length=x
+    var endpoint = 'http://dictionary/words?pattern=' + pattern + '&length=' + length;
+
+    request(endpoint, function(err, response, response_body) {
+        if (err) {
+            logger.error("most-solved: " + err);
+        } else {
+            // deal with response, this will be a json array
+            var matches = JSON.parse(response_body);
+            logger.info("most-solved: " + response_body);
+            // potentially update affected words & cells
+            // publish new facts if cells have been updated
+        }
+    });
 }

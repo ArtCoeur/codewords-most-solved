@@ -31,6 +31,23 @@ Word.prototype.numberSolved = function() {
 };
 
 /**
+ * Pattern generation should be in a separate class
+ * So all solved cells can be used
+ * @returns {string}
+ */
+Word.prototype.asPattern = function() {
+    var pattern = '';
+    _.each(this.cells, function(element, index, list) {
+        if(!_.isNumber(element)) {
+            pattern = pattern + element;
+        } else {
+            pattern = pattern + '.';
+        }
+    });
+    return pattern;
+};
+
+/**
  *
  * @param number
  * @param letter
@@ -42,5 +59,9 @@ Word.prototype.update = function(number, letter) {
         }
     });
 };
+
+Word.prototype.length = function() {
+    return this.cells.length;
+}
 
 module.exports = Word;
