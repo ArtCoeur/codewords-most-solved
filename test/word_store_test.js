@@ -49,6 +49,18 @@ describe('Store', function() {
 
             Store.clear();
         });
+
+        it('should not return a word that is fully solved', function () {
+            var board = 'xyz231b';
+            var word_1 = ['a','d','i','o', 's'];
+            var word_2 = ['b',14,4];
+            Store.add(board, word_1);
+            Store.add(board, word_2);
+
+            var result = Store.mostSolved(board);
+
+            assert(result.equals(new Word(word_2)));
+        });
     });
 
     describe('update', function() {
@@ -78,7 +90,7 @@ describe('Store', function() {
            assert(null == result);
        });
 
-       it("should stores words keyed on board", function() {
+       it("should store words keyed on board", function() {
            var board_1 = '33ffa34b';
            var word_1 = [2, 21,'d','i','m'];
            var board_2 = 'aa83f09d';

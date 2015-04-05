@@ -3,8 +3,9 @@ var _ = require("underscore"),
     logger = require('./logger');
 
 /**
- * store and retrieve words
+ * stores and retrieve words
  * all words are related to a board id string
+ * should be updated to use a Board object to store each Board's cells
  */
 var words = {};
 
@@ -37,6 +38,7 @@ exports.list = function(board) {
 
 /**
  *  Returns the first Word found with the most solved cells
+ *  where the Word is not completely solved
  */
 exports.mostSolved = function(board) {
 
@@ -44,9 +46,11 @@ exports.mostSolved = function(board) {
     var most_solved = null;
 
     _.each(words[board], function(word){
-        if (word.numberSolved() > number){
-            number = word.numberSolved();
-            most_solved = word;
+        if (!word.isSolved()) {
+            if (word.numberSolved() > number) {
+                number = word.numberSolved();
+                most_solved = word;
+            }
         }
     });
 

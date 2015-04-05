@@ -37,6 +37,10 @@ Word.prototype.numberSolved = function() {
     return solved;
 };
 
+Word.prototype.isSolved = function() {
+    return this.numberSolved() == this.length();
+};
+
 /**
  * Pattern generation should be in a separate class
  * So all solved cells can be used

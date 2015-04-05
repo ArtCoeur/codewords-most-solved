@@ -59,6 +59,17 @@ describe('Word', function() {
         });
     });
 
+    describe('isSolved', function() {
+        it('should return false when not solved', function() {
+            var word = new Word(['1','a','e','4']);
+            assert(!word.isSolved());
+        });
+
+        it('should return true when solved', function() {
+            var word = new Word(['D','a','e','d']);
+            assert(word.isSolved());
+        });
+    });
 
     describe('update', function() {
         it ('should update its own cells', function() {
