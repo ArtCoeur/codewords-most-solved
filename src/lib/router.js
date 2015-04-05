@@ -9,12 +9,12 @@ exports.handleFact= function(pub, fact) {
     if (fact.name == 'word.new') {
         handleNewWord(fact);
     }  else if (fact.name == 'cell.updated') {
-
+        handleUpdatedCell(fact);
     }
 };
 
 /**
- * @param fact fact object
+ * @param fact A fact object
  */
 function handleNewWord(fact) {
     // add word to the word store
@@ -22,5 +22,9 @@ function handleNewWord(fact) {
 }
 
 function handleUpdatedCell(fact) {
-
+    // update all affected words
+    // get most solved
+    // use dictionary to find possible matches
+    // potentially update affected words
+    // publish fact
 }
