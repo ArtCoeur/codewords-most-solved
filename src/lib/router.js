@@ -32,8 +32,8 @@ function handleNewWord(fact) {
 
 function handleUpdatedCell(pub, fact) {
     // update all affected words
-    logger.info('most-solved update cell, board: ' + fact.board + ' number ' + fact.data.number + ' letter ' + fact.data.letter);
-    Store.update(fact.board, fact.data.number, fact.data.letter);
+    logger.info('most-solved update cell, board: ' + fact.board + ' number ' + fact.data.body.number + ' letter ' + fact.data.body.letter);
+    Store.update(fact.board, fact.data.body.number, fact.data.body.letter);
 
     // get most solved
     var most_solved = Store.mostSolved(fact.board);
@@ -46,7 +46,7 @@ function handleUpdatedCell(pub, fact) {
     // need a pattern generator & a store of all solved letters, so we can rule out certain letters
     // var pattern_endpoint = 'http://pattern/pattern/' + fact.board;
     // var body = JSON.stringify(most_solved.getCells())
-    
+
     var pattern =  most_solved.asPattern();
     var length = most_solved.length();
 
