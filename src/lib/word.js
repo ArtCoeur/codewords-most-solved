@@ -52,6 +52,7 @@ Word.prototype.asPattern = function() {
         if(!_.isFinite(element)) {
             pattern = pattern + element;
         } else {
+            // be more sophisticated with the pattern generation
             pattern = pattern + '.';
         }
     });
