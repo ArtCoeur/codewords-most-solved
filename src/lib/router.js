@@ -44,6 +44,9 @@ function handleUpdatedCell(pub, fact) {
     }
 
     // need a pattern generator & a store of all solved letters, so we can rule out certain letters
+    // var pattern_endpoint = 'http://pattern/pattern/' + fact.board;
+    // var body = JSON.stringify(most_solved.getCells())
+    
     var pattern =  most_solved.asPattern();
     var length = most_solved.length();
 
@@ -76,8 +79,11 @@ function handleUpdatedCell(pub, fact) {
                                 board: fact.board,
                                 name: 'cell.updated',
                                 data: {
-                                    number: cell,
-                                    letter: char
+                                    body: {
+                                        number: cell,
+                                        letter: char
+                                    },
+                                    type: 'application/json'
                                 }
                             })
                         );
