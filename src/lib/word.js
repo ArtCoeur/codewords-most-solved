@@ -75,4 +75,8 @@ Word.prototype.length = function() {
     return this.cells.length;
 }
 
+Word.prototype.getCells = function() {
+    return this.cells;
+}
+
 module.exports = Word;

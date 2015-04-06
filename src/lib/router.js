@@ -1,6 +1,8 @@
 var logger = require('./logger'),
     Store = require('./word_store'),
-    request = require('request');
+    request = require('request'),
+    _ = require('underscore');
+
 /**
  * should just route to 'controllers'
  */
@@ -16,7 +18,7 @@ exports.handleFact = function(pub, fact) {
     if (fact.name == 'word.new') {
         handleNewWord(fact);
     }  else if (fact.name == 'cell.updated') {
-        handleUpdatedCell(fact);
+        handleUpdatedCell(pub, fact);
     }
 };
 
@@ -28,8 +30,9 @@ function handleNewWord(fact) {
     Store.add(fact.board, fact.data.body.cells);
 }
 
-function handleUpdatedCell(fact) {
+function handleUpdatedCell(pub, fact) {
     // update all affected words
+    logger.info('most-solved update cell, board: ' + fact.board + ' number ' + fact.data.number + ' letter ' + fact.data.letter);
     Store.update(fact.board, fact.data.number, fact.data.letter);
 
     // get most solved
@@ -39,6 +42,7 @@ function handleUpdatedCell(fact) {
         logger.info("no most solved word : available words = " + Store.list(fact.board));
         return;
     }
+
     // need a pattern generator & a store of all solved letters, so we can rule out certain letters
     var pattern =  most_solved.asPattern();
     var length = most_solved.length();
@@ -58,7 +62,28 @@ function handleUpdatedCell(fact) {
             var matches = JSON.parse(response_body);
             logger.info("most-solved: success : " + response_body);
             // potentially update affected words & cells
-            // publish new facts if cells have been updated
+            // if matches.length == 1 then update all local words and
+            if (1 == matches.length){
+                var match = matches[0];
+
+                // resolve the numbers
+                _.each(most_solved.getCells(), function(cell, index){
+                    if (_.isFinite(cell)){
+                        // get char at index from match
+                        var char = match.charAt(index);
+                        Store.update(fact.board, cell, char);
+                        pub.write(JSON.stringify({
+                                board: fact.board,
+                                name: 'cell.updated',
+                                data: {
+                                    number: cell,
+                                    letter: char
+                                }
+                            })
+                        );
+                    }
+                });
+            }
         }
     });
 }

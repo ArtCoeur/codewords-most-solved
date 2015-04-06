@@ -44,4 +44,4 @@ function doConnect(){
 }
 
 // hack to wait till rabbitmq is up
-setTimeout(doConnect, 10000);
+setTimeout(doConnect, 12000);
