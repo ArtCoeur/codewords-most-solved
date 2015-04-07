@@ -1,6 +1,5 @@
 var _ = require("underscore"),
-    Word = require("./word"),
-    logger = require('./logger');
+    Word = require("./word");
 
 /**
  * stores and retrieve words
@@ -17,7 +16,6 @@ exports.add = function(board, word) {
     if (!words[board]){
         words[board] = [];
     }
-    logger.info('board: ' + board + ' word : ' + word + ' length : ' + words[board].length);
     words[board].push(new Word(word));
 };
 
