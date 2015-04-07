@@ -6,7 +6,6 @@ logger.info('most-solved: running');
 
 // wait until rabbitmq can accept connections, somehow
 function doConnect(){
-
     try {
         var context = rabbitmq.createContext(
             'amqp://' + process.env.RABBITMQ_PORT_5672_TCP_ADDR + ':' + process.env.RABBITMQ_PORT_5672_TCP_PORT
@@ -21,13 +20,10 @@ function doConnect(){
                 pub = context.socket('PUB');
 
             pub.connect('events', function() {
-
                 sub.connect('events', function () {
-
                     // deal with facts as they come in
                     sub.on('data', function (body) {
-                        //logger.info("new fact : " + body);
-                        router.handleFact(pub, JSON.parse(body));
+                        router.newFact(pub, JSON.parse(body));
                     });
                 });
             });
