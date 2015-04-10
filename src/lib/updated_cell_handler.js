@@ -20,7 +20,7 @@ module.exports.handleFact = function(pub, fact) {
     var most_solved = Store.mostSolved(fact.board);
 
     if (!most_solved) {
-        logger.info("no most solved word : available words = " + Store.list(fact.board));
+        logger.info("no most solved word available");
         return;
     }
 
@@ -28,12 +28,12 @@ module.exports.handleFact = function(pub, fact) {
     // need a pattern generator & a store of all solved letters, so we can rule out certain letters
     var pattern_endpoint = 'http://pattern/regexp/' + fact.board;
 
-    request({url: pattern_endpoint, json: true, body: most_solved.getCells()}, function(err, response, response_body) {
+    request({url: pattern_endpoint, method: 'POST', json: true, body: most_solved.getCells()}, function(err, response, response_body) {
         if (err) {
             throw err;
         }
 
-        var pattern =  response_body;
+        var pattern =  response_body['pattern'];
         var length = most_solved.length();
 
         logger.info("pattern = " + pattern);
@@ -46,17 +46,17 @@ module.exports.handleFact = function(pub, fact) {
 
         request(endpoint, function (err, response, response_body) {
             if (err) {
-                logger.error("most-solved: error : " + err);
-            } else {
-                // deal with response, this will be a json array
-                var matches = JSON.parse(response_body);
-                logger.info("most-solved: success : " + response_body);
-                // potentially update affected words & cells
-                // if matches.length == 1 then update all local words and publish cell.updated facts
+                throw err;
+            }
 
-                if (1 == matches.length) {
-                    wordSolved(pub, fact, most_solved, matches[0]);
-                }
+            // deal with response, this will be a json array
+            var matches = JSON.parse(response_body);
+            logger.info("most-solved: success : " + response_body);
+            // potentially update affected words & cells
+            // if matches.length == 1 then update all local words and publish cell.updated facts
+
+            if (1 == matches.length) {
+                wordSolved(pub, fact, most_solved, matches[0]);
             }
         });
     });
