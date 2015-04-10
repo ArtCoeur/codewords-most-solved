@@ -24,57 +24,66 @@ module.exports.handleFact = function(pub, fact) {
         return;
     }
 
-    // need a pattern generator & a store of all solved letters, so we can rule out certain letters
-    // var pattern_endpoint = 'http://pattern/regexp/' + fact.board;
-    // var body = JSON.stringify(most_solved.getCells())
-
     // 3) generate pattern
-    var pattern =  most_solved.asPattern();
-    var length = most_solved.length();
+    // need a pattern generator & a store of all solved letters, so we can rule out certain letters
+    var pattern_endpoint = 'http://pattern/regexp/' + fact.board;
 
-    logger.info("pattern = " + pattern);
-
-    // 4) use dictionary to find possible matches
-    // GET http://dictionary/words?pattern=ptn&length=x
-    var endpoint = 'http://dictionary/words?pattern=' + pattern + '&length=' + length;
-    logger.info("endpoint = " + endpoint);
-
-    request(endpoint, function(err, response, response_body) {
+    request({url: pattern_endpoint, json: true, body: most_solved.getCells()}, function(err, response, response_body) {
         if (err) {
-            logger.error("most-solved: error : " + err);
-        } else {
-            // deal with response, this will be a json array
-            var matches = JSON.parse(response_body);
-            logger.info("most-solved: success : " + response_body);
-            // potentially update affected words & cells
-            // if matches.length == 1 then update all local words and publish cell.updated facts
+            throw err;
+        }
 
-            if (1 == matches.length){
-                var match = matches[0];
+        var pattern =  response_body;
+        var length = most_solved.length();
 
-                // resolve the numbers
-                _.each(most_solved.getCells(), function(cell, index){
-                    if (_.isFinite(cell)){
-                        // get char at index from match
-                        var char = match.charAt(index);
-                        // 5) update local store
-                        Store.update(fact.board, cell, char);
-                        // 6) publish facts
-                        pub.write(JSON.stringify({
-                                board: fact.board,
-                                name: 'cell.updated',
-                                data: {
-                                    body: {
-                                        number: cell,
-                                        letter: char
-                                    },
-                                    type: 'application/json'
-                                }
-                            })
-                        );
-                    }
-                });
+        logger.info("pattern = " + pattern);
+
+        // 4) use dictionary to find possible matches
+        // GET http://dictionary/words?pattern=ptn&length=x
+        var endpoint = 'http://dictionary/words?pattern=' + pattern + '&length=' + length;
+
+        logger.info("endpoint = " + endpoint);
+
+        request(endpoint, function (err, response, response_body) {
+            if (err) {
+                logger.error("most-solved: error : " + err);
+            } else {
+                // deal with response, this will be a json array
+                var matches = JSON.parse(response_body);
+                logger.info("most-solved: success : " + response_body);
+                // potentially update affected words & cells
+                // if matches.length == 1 then update all local words and publish cell.updated facts
+
+                if (1 == matches.length) {
+                    wordSolved(pub, fact, most_solved, matches[0]);
+                }
             }
+        });
+    });
+};
+
+function wordSolved(pub, fact, most_solved, match) {
+
+    // resolve the numbers
+    _.each(most_solved.getCells(), function(cell, index){
+        if (_.isFinite(cell)){
+            // get char at index from match
+            var char = match.charAt(index);
+            // 5) update local store
+            Store.update(fact.board, cell, char);
+            // 6) publish facts
+            pub.write(JSON.stringify({
+                    board: fact.board,
+                    name: 'cell.updated',
+                    data: {
+                        body: {
+                            number: cell,
+                            letter: char
+                        },
+                        type: 'application/json'
+                    }
+                })
+            );
         }
     });
 }
