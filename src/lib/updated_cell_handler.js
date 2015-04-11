@@ -16,35 +16,40 @@ module.exports.handleFact = function(pub, fact) {
     // 1) update local store
     Store.update(fact.board, fact.data.body.number, fact.data.body.letter);
 
-    // 2) get most solved
-    var most_solved = Store.mostSolved(fact.board);
+    // 2) get most solved word
+    var current = Store.mostSolved(fact.board);
 
-    if (!most_solved) {
-        logger.info("no most solved word available");
+    if (!current) {
+        logger.info("no words left to solve");
         return;
     }
+
+    current = Store.take(fact.board, current);
 
     // 3) generate pattern
     // need a pattern generator & a store of all solved letters, so we can rule out certain letters
     var pattern_endpoint = 'http://pattern/regexp/' + fact.board;
 
-    request({url: pattern_endpoint, method: 'POST', json: true, body: most_solved.getCells()}, function(err, response, response_body) {
+    request({url: pattern_endpoint, method: 'POST', json: true, body: current.getCells()}, function(err, response, response_body) {
         if (err) {
+            // push the current word back into the store before throwing the error
+            Store.restore(fact.board, current);
             throw err;
         }
 
-        var pattern =  response_body['pattern'];
-        var length = most_solved.length();
-
-        logger.info("pattern = " + pattern);
+        logger.info("pattern = " + response_body['pattern']);
 
         // 4) use dictionary to find possible matches
         // GET http://dictionary/words?pattern=ptn&length=x
-        var endpoint = 'http://dictionary/words?pattern=' + pattern + '&length=' + length;
+        var endpoint = 'http://dictionary/words?pattern=' + response_body['pattern'] + '&length=' + current.length();
 
         logger.info("endpoint = " + endpoint);
 
         request(endpoint, function (err, response, response_body) {
+
+            // push the current word back into the store
+            Store.restore(fact.board, current);
+
             if (err) {
                 throw err;
             }
@@ -52,28 +57,32 @@ module.exports.handleFact = function(pub, fact) {
             // deal with response, this will be a json array
             var matches = JSON.parse(response_body);
             logger.info("most-solved: success : " + response_body);
-            // potentially update affected words & cells
-            // if matches.length == 1 then update all local words and publish cell.updated facts
 
+            // if matches.length == 1 then update all local words and publish cell.updated facts
             if (1 == matches.length) {
-                wordSolved(pub, fact, most_solved, matches[0]);
+                wordSolved(pub, fact.board, current, matches[0]);
             }
         });
     });
 };
 
-function wordSolved(pub, fact, most_solved, match) {
-
-    // resolve the numbers
-    _.each(most_solved.getCells(), function(cell, index){
+/**
+ * resolve the numbers into letters
+ * @param pub
+ * @param fact
+ * @param word
+ * @param match
+ */
+function wordSolved(pub, board, word, match) {
+    _.each(word.getCells(), function(cell, index){
         if (_.isFinite(cell)){
             // get char at index from match
             var char = match.charAt(index);
             // 5) update local store
-            Store.update(fact.board, cell, char);
-            // 6) publish facts
+            Store.update(board, cell, char);
+            // 6) publish a fact
             pub.write(JSON.stringify({
-                    board: fact.board,
+                    board: board,
                     name: 'cell.updated',
                     data: {
                         body: {

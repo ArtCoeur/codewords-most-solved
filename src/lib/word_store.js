@@ -7,6 +7,7 @@ var _ = require("underscore"),
  * should be updated to use a Board object to store each Board's cells
  */
 var words = {};
+var taken = {};
 
 /**
  *
@@ -63,8 +64,11 @@ exports.mostSolved = function(board) {
  * @param letter
  */
 exports.update = function(board, number, letter) {
-    _.each(words[board], function(element){
-        element.update(number, letter);
+    _.each(words[board], function(word){
+        word.update(number, letter);
+    });
+    _.each(taken[board], function(word){
+        word.update(number, letter);
     });
 };
 
@@ -80,8 +84,27 @@ exports.take = function(board, remove) {
         if (word === remove) {
             found = true;
             words[board].splice(index, 1);
+            if (!taken[board]){
+                taken[board] = [];
+            }
+            taken[board].push(remove);
         }
     });
 
     return found ? remove : null;
+};
+
+/**
+ *
+ * @param board
+ * @param word
+ */
+exports.restore = function(board, restore){
+
+    _.each(taken[board], function(word, index){
+        if (word === restore) {
+            taken[board].splice(index, 1);
+            words[board].push(restore);
+        }
+    });
 };

@@ -117,7 +117,7 @@ describe('Store', function() {
            Store.add(board_1, word_2);
            Store.add(board_1, word_3);
            Store.add(board_1, word_1);
-           
+
            assert(Store.list(board_1).length == 3);
 
            var most_solved = Store.mostSolved(board_1);
@@ -145,4 +145,5 @@ describe('Store', function() {
 
         })
     });
+
 });
