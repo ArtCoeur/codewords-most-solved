@@ -29,7 +29,7 @@ Word.prototype.equals = function(word) {
 Word.prototype.numberSolved = function() {
 
     var solved = 0;
-    _.each(this.cells, function(element, index, list) {
+    _.each(this.cells, function(element) {
         if(!_.isFinite(element)) {
             solved++;
         }
@@ -48,7 +48,7 @@ Word.prototype.isSolved = function() {
  */
 Word.prototype.asPattern = function() {
     var pattern = '';
-    _.each(this.cells, function(element, index, list) {
+    _.each(this.cells, function(element) {
         if(!_.isFinite(element)) {
             pattern = pattern + element;
         } else {
@@ -74,10 +74,10 @@ Word.prototype.update = function(number, letter) {
 
 Word.prototype.length = function() {
     return this.cells.length;
-}
+};
 
 Word.prototype.getCells = function() {
     return this.cells;
-}
+};
 
 module.exports = Word;

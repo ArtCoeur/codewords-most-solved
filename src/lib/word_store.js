@@ -10,6 +10,7 @@ var words = {};
 
 /**
  *
+ * @param board the name of the board this word belongs to
  * @param word an array of cell numbers
  */
 exports.add = function(board, word) {
@@ -27,16 +28,17 @@ exports.clear = function() {
 };
 
 /**
- *
+ * @param board
  * @returns {{}}
  */
 exports.list = function(board) {
     return words[board];
-}
+};
 
 /**
  *  Returns the first Word found with the most solved cells
  *  where the Word is not completely solved
+ * @param board
  */
 exports.mostSolved = function(board) {
 
@@ -56,7 +58,7 @@ exports.mostSolved = function(board) {
 };
 
 /**
- *
+ * @param board
  * @param number
  * @param letter
  */
@@ -64,4 +66,22 @@ exports.update = function(board, number, letter) {
     _.each(words[board], function(element){
         element.update(number, letter);
     });
+};
+
+/**
+ * Remove and return a word from the store
+ * @param board
+ * @param remove word object
+ */
+exports.take = function(board, remove) {
+
+    var found = false;
+    _.each(words[board], function(word, index){
+        if (word === remove) {
+            found = true;
+            words[board].splice(index, 1);
+        }
+    });
+
+    return found ? remove : null;
 };

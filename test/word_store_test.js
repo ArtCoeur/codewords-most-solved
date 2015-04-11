@@ -106,4 +106,43 @@ describe('Store', function() {
 
        });
     });
+
+    describe('take', function() {
+       it('should remove a word from the store', function(){
+           var board_1 = '33ba41f0';
+           var word_1 = [2, 21,'d','i','m'];
+           var word_2 = [1,10,10,'o','w'];
+           var word_3 = [1,9,13,21,'w'];
+
+           Store.add(board_1, word_2);
+           Store.add(board_1, word_3);
+           Store.add(board_1, word_1);
+           
+           assert(Store.list(board_1).length == 3);
+
+           var most_solved = Store.mostSolved(board_1);
+           var taken = Store.take(board_1, most_solved);
+
+           assert(taken === most_solved);
+           assert(Store.list(board_1).length == 2);
+
+       });
+
+        it('should not remove a word that does not exist', function(){
+            var board_1 = 'aa5e1899';
+            var word_1 = [2, 21,'d','i','m'];
+            var word_2 = [1,10,10,'o','w'];
+            var word_3 = [1,9,13,21,'w'];
+            Store.add(board_1, word_1);
+            Store.add(board_1, word_2);
+            Store.add(board_1, word_3);
+
+            var word = new Word([]);
+            var taken = Store.take(board_1, word);
+
+            assert(taken === null);
+            assert(Store.list(board_1).length == 3);
+
+        })
+    });
 });
