@@ -11,7 +11,7 @@ var logger = require('./logger'),
 module.exports.handleFact = function(pub, fact) {
 
     // update all affected words
-    logger.info('most-solved:  cell.updated board: ' + fact.board + ' number ' + fact.data.body.number + ' letter ' + fact.data.body.letter);
+    logger.info('cell.updated ' + JSON.stringify(fact));
 
     // 1) update local store
     Store.update(fact.board, fact.data.body.number, fact.data.body.letter);
@@ -20,7 +20,7 @@ module.exports.handleFact = function(pub, fact) {
     var current = Store.mostSolved(fact.board);
 
     if (!current) {
-        logger.info("no words left to solve");
+        logger.info("no words available to solve");
         return;
     }
 
@@ -56,7 +56,7 @@ module.exports.handleFact = function(pub, fact) {
 
             // deal with response, this will be a json array
             var matches = JSON.parse(response_body);
-            logger.info("most-solved: success : " + response_body);
+            logger.info("success : " + response_body);
 
             // if matches.length == 1 then update all local words and publish cell.updated facts
             if (1 == matches.length) {
@@ -75,6 +75,7 @@ module.exports.handleFact = function(pub, fact) {
  */
 function wordSolved(pub, board, word, match) {
     _.each(word.getCells(), function(cell, index){
+        logger.info("wordSolved : " + cell);
         if (_.isFinite(cell)){
             // get char at index from match
             var char = match.charAt(index);
