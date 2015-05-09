@@ -75,13 +75,17 @@ module.exports.handleFact = function(pub, fact) {
  */
 function wordSolved(pub, board, word, match) {
     _.each(word.getCells(), function(cell, index){
+
         logger.info("wordSolved : " + cell);
+
         if (_.isFinite(cell)){
             // get char at index from match
             var char = match.charAt(index);
+
             // 5) update local store
-            Store.update(board, cell, char);
-            // 6) publish a fact
+            var solved_words = Store.update(board, cell, char);
+
+            // 6) publish a cell.updated fact
             pub.write(JSON.stringify({
                     board: board,
                     name: 'cell.updated',
@@ -94,6 +98,21 @@ function wordSolved(pub, board, word, match) {
                     }
                 })
             );
+
+            // publish any solved word facts
+            _.each(solved_words, function(solved_word){
+                pub.write(JSON.stringify({
+                    board: board,
+                    name: 'word.solved',
+                    data: {
+                        body: {
+                            word: solved_word + ''
+                        },
+                        type: 'application/json'
+                    }
+                    })
+                );
+            });
         }
     });
 }

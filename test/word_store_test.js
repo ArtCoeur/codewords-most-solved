@@ -94,7 +94,7 @@ describe('Store', function() {
 
             result = Store.update(board, 1, 'a');
             assert(result.length == 1);
-            
+
             var word = result.pop();
             assert(word.equals(new Word(word_2)));
         });
