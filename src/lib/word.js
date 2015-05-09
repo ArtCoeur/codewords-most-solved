@@ -70,6 +70,8 @@ Word.prototype.update = function(number, letter) {
             list[index] = letter.toLowerCase();
         }
     });
+    
+    return this.isSolved();
 };
 
 Word.prototype.length = function() {

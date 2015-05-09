@@ -79,11 +79,19 @@ describe('Word', function() {
             assert(3 == word.numberSolved());
         });
 
-        it ('should not word when it does not contain number', function() {
+        it ('should not change word when it does not contain number', function() {
             var word = new Word(['1','a','e','4']);
             assert(2 == word.numberSolved());
             word.update('10', 'b');
             assert(2 == word.numberSolved());
+        });
+
+        it ('should return true if solved', function() {
+            var word = new Word(['c', '2', '4']);
+            var solved = word.update('2', 'o');
+            assert(false == solved);
+            solved = word.update('4', 'w');
+            assert(solved);
         });
     });
 });
