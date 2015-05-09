@@ -66,6 +66,12 @@ describe('Word', function() {
             solved = word.update('4', 'w');
             assert(solved);
         });
+
+        it ('should not return true if solved but does not contain letter', function() {
+            var word = new Word(['c', 'o', 'w']);
+            var solved = word.update('7', 'x');
+            assert(false == solved);
+        });
     });
 
     describe('toString', function() {

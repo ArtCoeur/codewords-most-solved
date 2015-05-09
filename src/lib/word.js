@@ -53,13 +53,17 @@ Word.prototype.isSolved = function() {
  * @returns {boolean}
  */
 Word.prototype.update = function(number, letter) {
+
+    var contains = false;
+
     _.each(this.cells, function(element, index, list) {
         if(number == element) {
             list[index] = letter.toLowerCase();
+            contains = true;
         }
     });
 
-    return this.isSolved();
+    return contains ? this.isSolved() : false;
 };
 
 /**

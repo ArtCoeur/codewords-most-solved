@@ -74,14 +74,45 @@ describe('Store', function() {
            var result = Store.mostSolved(board);
            assert(result.equals(new Word(word_1)));
 
-           // setting number 10 to equal 'l' means word_2 has 2 solved cells
+           // setting number 10 to equal 'l' means word_2 has 4 solved cells
            Store.update(board, 10, 'l');
-           var result = Store.mostSolved(board);
+           result = Store.mostSolved(board);
 
            assert(result.equals(new Word(word_2)));
 
            Store.clear();
        });
+
+        it ('should return solved words', function() {
+            var board = '2a3da34b';
+            var word_1 = [2, 21,'d','i','m'];
+            var word_2 = [1,10,10,'o','w'];
+            Store.add(board, word_1);
+            Store.add(board, word_2);
+            var result = Store.update(board, 10, 'l');
+            assert(result.length == 0);
+
+            result = Store.update(board, 1, 'a');
+            assert(result.length == 1);
+            
+            var word = result.pop();
+            assert(word.equals(new Word(word_2)));
+        });
+
+        it ('should return solved words when taken', function() {
+            var board = '2a3da34b';
+            var word_1 = [2, 21,'d','i','m'];
+            var word_2 = [1,10,10,'o','w'];
+            Store.add(board, word_1);
+            Store.add(board, word_2);
+            Store.update(board, 10, 'l');
+            var taken = Store.mostSolved(board);
+            var result = Store.update(board, 1, 'a');
+
+            assert(result.length == 1);
+            var word = result.pop();
+            assert(word.equals(taken));
+        });
     });
 
     describe('list', function() {

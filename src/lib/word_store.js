@@ -64,18 +64,29 @@ exports.mostSolved = function(board) {
  * @param letter
  */
 exports.update = function(board, number, letter) {
+
+    var solved = [];
+
     _.each(words[board], function(word){
-        word.update(number, letter);
+        if (word.update(number, letter)){
+            solved.push(word);
+        }
     });
+
     _.each(taken[board], function(word){
-        word.update(number, letter);
+        if (word.update(number, letter)){
+            solved.push(word);
+        }
     });
+
+    return solved;
 };
 
 /**
  * Remove and return a word from the store
  * @param board
- * @param remove word object
+ * @param remove
+ * @returns {word} | {null}
  */
 exports.take = function(board, remove) {
 
