@@ -8,6 +8,6 @@ var Store = require('./word_store'),
  * @param fact a fact object
  */
 module.exports.handleFact = function(pub, fact) {
-    logger.info("most-solved word.new board: " + fact.board);
+    logger.info("word.new board: " + fact.board);
     Store.add(fact.board, fact.data.body.cells);
 }

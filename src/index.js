@@ -15,8 +15,8 @@ context.on('ready', function() {
     var sub = context.socket('SUB'),
         pub = context.socket('PUB');
 
-    pub.connect('events', function() {
-        sub.connect('events', function () {
+    pub.connect('events', function(){
+        sub.connect('events', function (){
 
             // deal with facts as they come in
             sub.on('data', function (body) {
