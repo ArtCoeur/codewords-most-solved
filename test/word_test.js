@@ -17,33 +17,6 @@ describe('Word', function() {
         });
     });
 
-    describe('asPattern', function() {
-
-        it('should add all dots when no cells are solved', function() {
-
-            var word = new Word(['1','2','3','4']);
-            var actual = word.asPattern();
-
-            assert('....' == actual);
-        });
-
-        it('should only add dots when cells are not solved', function() {
-
-            var word = new Word(['1','A','e','4']);
-            var actual = word.asPattern();
-
-            assert('.ae.' == actual);
-        });
-
-        it('should add no dots when all cells are solved', function() {
-
-            var word = new Word(['d','E','a', 'D']);
-            var actual = word.asPattern();
-
-            assert('dead' == actual);
-        });
-    });
-
     describe('numberSolved', function() {
         it ('should return 2 when 2 cells are solved', function() {
             var word = new Word(['1','a','e','4']);

@@ -42,24 +42,6 @@ Word.prototype.isSolved = function() {
 };
 
 /**
- * Pattern generation should be in a separate class
- * So all solved cells can be used
- * @returns {string}
- */
-Word.prototype.asPattern = function() {
-    var pattern = '';
-    _.each(this.cells, function(element) {
-        if(!_.isFinite(element)) {
-            pattern = pattern + element;
-        } else {
-            // be more sophisticated with the pattern generation
-            pattern = pattern + '.';
-        }
-    });
-    return pattern;
-};
-
-/**
  *
  * @param number
  * @param letter
@@ -70,7 +52,7 @@ Word.prototype.update = function(number, letter) {
             list[index] = letter.toLowerCase();
         }
     });
-    
+
     return this.isSolved();
 };
 
