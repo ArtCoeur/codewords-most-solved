@@ -67,4 +67,13 @@ describe('Word', function() {
             assert(solved);
         });
     });
+
+    describe('toString', function() {
+       it ('should return the cells as a string', function() {
+           var word = new Word(['t', '4', 'm']);
+           assert('t4m' == word);
+           word.update('4', 'i');
+           assert('tim' == word);
+       });
+    });
 });

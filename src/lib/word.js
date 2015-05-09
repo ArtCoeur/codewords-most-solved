@@ -25,6 +25,7 @@ Word.prototype.equals = function(word) {
 
 /**
  * Return the number of solved cells in the word
+ * @returns {integer}
  */
 Word.prototype.numberSolved = function() {
 
@@ -37,6 +38,10 @@ Word.prototype.numberSolved = function() {
     return solved;
 };
 
+/**
+ *
+ * @returns {boolean}
+ */
 Word.prototype.isSolved = function() {
     return this.numberSolved() == this.length();
 };
@@ -45,6 +50,7 @@ Word.prototype.isSolved = function() {
  *
  * @param number
  * @param letter
+ * @returns {boolean}
  */
 Word.prototype.update = function(number, letter) {
     _.each(this.cells, function(element, index, list) {
@@ -56,12 +62,28 @@ Word.prototype.update = function(number, letter) {
     return this.isSolved();
 };
 
+/**
+ *
+ * @returns {integer}
+ */
 Word.prototype.length = function() {
     return this.cells.length;
 };
 
+/**
+ *
+ * @returns {array}
+ */
 Word.prototype.getCells = function() {
     return this.cells;
+};
+
+/**
+ *
+ * @returns {string}
+ */
+Word.prototype.toString = function() {
+    return this.cells.join('');
 };
 
 module.exports = Word;
