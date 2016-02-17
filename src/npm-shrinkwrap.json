@@ -19,7 +19,8 @@
         },
         "colors": {
           "version": "0.6.2",
-          "from": "colors@0.6.2"
+          "from": "colors@0.6.2",
+          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
         },
         "cycle": {
           "version": "1.0.3",
@@ -67,7 +68,8 @@
         },
         "node-uuid": {
           "version": "1.4.7",
-          "from": "node-uuid@1.4.7"
+          "from": "node-uuid@1.4.7",
+          "resolved": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.4.7.tgz"
         },
         "readable-stream": {
           "version": "1.1.13",
@@ -169,7 +171,8 @@
         },
         "node-uuid": {
           "version": "1.4.7",
-          "from": "node-uuid@1.4.7"
+          "from": "node-uuid@1.4.7",
+          "resolved": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.4.7.tgz"
         },
         "qs": {
           "version": "2.4.2",
@@ -379,7 +382,8 @@
       "dependencies": {
         "colors": {
           "version": "0.6.2",
-          "from": "colors@0.6.2"
+          "from": "colors@0.6.2",
+          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
         },
         "cliff": {
           "version": "0.1.10",
@@ -387,7 +391,8 @@
           "dependencies": {
             "colors": {
               "version": "1.0.3",
-              "from": "colors@1.0.3"
+              "from": "colors@1.0.3",
+              "resolved": "https://registry.npmjs.org/colors/-/colors-1.0.3.tgz"
             },
             "eyes": {
               "version": "0.1.8",
@@ -475,6 +480,7 @@
                 "read": {
                   "version": "1.0.7",
                   "from": "read@1.0.7",
+                  "resolved": "https://registry.npmjs.org/read/-/read-1.0.7.tgz",
                   "dependencies": {
                     "mute-stream": {
                       "version": "0.0.6",
@@ -679,6 +685,7 @@
             "mkdirp": {
               "version": "0.5.1",
               "from": "mkdirp@0.5.1",
+              "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz",
               "dependencies": {
                 "minimist": {
                   "version": "0.0.8",
