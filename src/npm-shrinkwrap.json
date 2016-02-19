@@ -19,7 +19,8 @@
         },
         "colors": {
           "version": "0.6.2",
-          "from": "colors@0.6.2"
+          "from": "colors@0.6.2",
+          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
         },
         "cycle": {
           "version": "1.0.3",
@@ -379,7 +380,8 @@
       "dependencies": {
         "colors": {
           "version": "0.6.2",
-          "from": "colors@0.6.2"
+          "from": "colors@0.6.2",
+          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
         },
         "cliff": {
           "version": "0.1.10",
@@ -387,7 +389,8 @@
           "dependencies": {
             "colors": {
               "version": "1.0.3",
-              "from": "colors@1.0.3"
+              "from": "colors@1.0.3",
+              "resolved": "https://registry.npmjs.org/colors/-/colors-1.0.3.tgz"
             },
             "eyes": {
               "version": "0.1.8",
@@ -398,7 +401,6 @@
         "flatiron": {
           "version": "0.4.3",
           "from": "flatiron@0.4.3",
-          "resolved": "https://registry.npmjs.org/flatiron/-/flatiron-0.4.3.tgz",
           "dependencies": {
             "broadway": {
               "version": "0.3.6",
@@ -460,8 +462,7 @@
                 },
                 "minimist": {
                   "version": "0.0.10",
-                  "from": "minimist@0.0.10",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
+                  "from": "minimist@0.0.10"
                 }
               }
             },
@@ -589,12 +590,10 @@
             "watch": {
               "version": "0.13.0",
               "from": "watch@0.13.0",
-              "resolved": "https://registry.npmjs.org/watch/-/watch-0.13.0.tgz",
               "dependencies": {
                 "minimist": {
                   "version": "1.2.0",
-                  "from": "minimist@1.2.0",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
+                  "from": "minimist@1.2.0"
                 }
               }
             }
@@ -603,6 +602,7 @@
         "nconf": {
           "version": "0.6.9",
           "from": "nconf@0.6.9",
+          "resolved": "https://registry.npmjs.org/nconf/-/nconf-0.6.9.tgz",
           "dependencies": {
             "async": {
               "version": "0.2.9",
@@ -624,8 +624,7 @@
                 },
                 "minimist": {
                   "version": "0.0.10",
-                  "from": "minimist@0.0.10",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
+                  "from": "minimist@0.0.10"
                 }
               }
             }
@@ -655,8 +654,7 @@
             },
             "minimist": {
               "version": "0.0.10",
-              "from": "minimist@0.0.10",
-              "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
+              "from": "minimist@0.0.10"
             }
           }
         },
@@ -730,7 +728,8 @@
                           "dependencies": {
                             "balanced-match": {
                               "version": "0.3.0",
-                              "from": "balanced-match@0.3.0"
+                              "from": "balanced-match@0.3.0",
+                              "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-0.3.0.tgz"
                             },
                             "concat-map": {
                               "version": "0.0.1",
