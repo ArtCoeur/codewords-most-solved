@@ -19,8 +19,7 @@
         },
         "colors": {
           "version": "0.6.2",
-          "from": "colors@0.6.2",
-          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
+          "from": "colors@0.6.2"
         },
         "cycle": {
           "version": "1.0.3",
@@ -380,8 +379,7 @@
       "dependencies": {
         "colors": {
           "version": "0.6.2",
-          "from": "colors@0.6.2",
-          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
+          "from": "colors@0.6.2"
         },
         "cliff": {
           "version": "0.1.10",
@@ -389,8 +387,7 @@
           "dependencies": {
             "colors": {
               "version": "1.0.3",
-              "from": "colors@1.0.3",
-              "resolved": "https://registry.npmjs.org/colors/-/colors-1.0.3.tgz"
+              "from": "colors@1.0.3"
             },
             "eyes": {
               "version": "0.1.8",
@@ -554,6 +551,7 @@
             "minimatch": {
               "version": "1.0.0",
               "from": "minimatch@1.0.0",
+              "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-1.0.0.tgz",
               "dependencies": {
                 "lru-cache": {
                   "version": "2.7.3",
@@ -576,6 +574,7 @@
                     "optimist": {
                       "version": "0.2.8",
                       "from": "optimist@0.2.8",
+                      "resolved": "https://registry.npmjs.org/optimist/-/optimist-0.2.8.tgz",
                       "dependencies": {
                         "wordwrap": {
                           "version": "0.0.3",
@@ -602,7 +601,6 @@
         "nconf": {
           "version": "0.6.9",
           "from": "nconf@0.6.9",
-          "resolved": "https://registry.npmjs.org/nconf/-/nconf-0.6.9.tgz",
           "dependencies": {
             "async": {
               "version": "0.2.9",
@@ -647,6 +645,7 @@
         "optimist": {
           "version": "0.6.1",
           "from": "optimist@0.6.1",
+          "resolved": "https://registry.npmjs.org/optimist/-/optimist-0.6.1.tgz",
           "dependencies": {
             "wordwrap": {
               "version": "0.0.3",
@@ -720,6 +719,7 @@
                     "minimatch": {
                       "version": "3.0.0",
                       "from": "minimatch@3.0.0",
+                      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.0.tgz",
                       "dependencies": {
                         "brace-expansion": {
                           "version": "1.1.3",
@@ -728,8 +728,7 @@
                           "dependencies": {
                             "balanced-match": {
                               "version": "0.3.0",
-                              "from": "balanced-match@0.3.0",
-                              "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-0.3.0.tgz"
+                              "from": "balanced-match@0.3.0"
                             },
                             "concat-map": {
                               "version": "0.0.1",
