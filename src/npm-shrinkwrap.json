@@ -50,7 +50,6 @@
         "amqplib": {
           "version": "0.3.2",
           "from": "amqplib@0.3.2",
-          "resolved": "https://registry.npmjs.org/amqplib/-/amqplib-0.3.2.tgz",
           "dependencies": {
             "bitsyntax": {
               "version": "0.0.4",
@@ -555,11 +554,12 @@
               "dependencies": {
                 "lru-cache": {
                   "version": "2.7.3",
-                  "from": "lru-cache@2.7.3"
+                  "from": "lru-cache@2",
+                  "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.7.3.tgz"
                 },
                 "sigmund": {
                   "version": "1.0.1",
-                  "from": "sigmund@1.0.1"
+                  "from": "sigmund@~1.0.0"
                 }
               }
             },
