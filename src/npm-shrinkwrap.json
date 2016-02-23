@@ -554,12 +554,11 @@
               "dependencies": {
                 "lru-cache": {
                   "version": "2.7.3",
-                  "from": "lru-cache@2",
-                  "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.7.3.tgz"
+                  "from": "lru-cache@2.7.3"
                 },
                 "sigmund": {
                   "version": "1.0.1",
-                  "from": "sigmund@~1.0.0"
+                  "from": "sigmund@1.0.1"
                 }
               }
             },
@@ -600,6 +599,7 @@
         "nconf": {
           "version": "0.6.9",
           "from": "nconf@0.6.9",
+          "resolved": "https://registry.npmjs.org/nconf/-/nconf-0.6.9.tgz",
           "dependencies": {
             "async": {
               "version": "0.2.9",
@@ -688,7 +688,8 @@
             },
             "ncp": {
               "version": "0.4.2",
-              "from": "ncp@0.4.2"
+              "from": "ncp@0.4.2",
+              "resolved": "https://registry.npmjs.org/ncp/-/ncp-0.4.2.tgz"
             },
             "rimraf": {
               "version": "2.5.2",
@@ -725,7 +726,8 @@
                           "dependencies": {
                             "balanced-match": {
                               "version": "0.3.0",
-                              "from": "balanced-match@0.3.0"
+                              "from": "balanced-match@0.3.0",
+                              "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-0.3.0.tgz"
                             },
                             "concat-map": {
                               "version": "0.0.1",
