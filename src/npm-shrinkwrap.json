@@ -459,8 +459,7 @@
                 },
                 "minimist": {
                   "version": "0.0.10",
-                  "from": "minimist@0.0.10",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
+                  "from": "minimist@0.0.10"
                 }
               }
             },
@@ -492,8 +491,7 @@
             },
             "director": {
               "version": "1.2.7",
-              "from": "director@1.2.7",
-              "resolved": "https://registry.npmjs.org/director/-/director-1.2.7.tgz"
+              "from": "director@1.2.7"
             }
           }
         },
@@ -556,11 +554,11 @@
               "dependencies": {
                 "lru-cache": {
                   "version": "2.7.3",
-                  "from": "lru-cache@2.7.3"
+                  "from": "lru-cache@2"
                 },
                 "sigmund": {
                   "version": "1.0.1",
-                  "from": "sigmund@1.0.1"
+                  "from": "sigmund@~1.0.0"
                 }
               }
             },
@@ -592,8 +590,7 @@
               "dependencies": {
                 "minimist": {
                   "version": "1.2.0",
-                  "from": "minimist@1.2.0",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
+                  "from": "minimist@1.2.0"
                 }
               }
             }
@@ -623,8 +620,7 @@
                 },
                 "minimist": {
                   "version": "0.0.10",
-                  "from": "minimist@0.0.10",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
+                  "from": "minimist@0.0.10"
                 }
               }
             }
@@ -654,8 +650,7 @@
             },
             "minimist": {
               "version": "0.0.10",
-              "from": "minimist@0.0.10",
-              "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
+              "from": "minimist@0.0.10"
             }
           }
         },
@@ -686,8 +681,7 @@
               "dependencies": {
                 "minimist": {
                   "version": "0.0.8",
-                  "from": "minimist@0.0.8",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.8.tgz"
+                  "from": "minimist@0.0.8"
                 }
               }
             },
