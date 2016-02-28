@@ -499,6 +499,7 @@
         "forever-monitor": {
           "version": "1.5.2",
           "from": "forever-monitor@1.5.2",
+          "resolved": "https://registry.npmjs.org/forever-monitor/-/forever-monitor-1.5.2.tgz",
           "dependencies": {
             "broadway": {
               "version": "0.3.6",
@@ -555,11 +556,11 @@
               "dependencies": {
                 "lru-cache": {
                   "version": "2.7.3",
-                  "from": "lru-cache@2"
+                  "from": "lru-cache@2.7.3"
                 },
                 "sigmund": {
                   "version": "1.0.1",
-                  "from": "sigmund@~1.0.0"
+                  "from": "sigmund@1.0.1"
                 }
               }
             },
